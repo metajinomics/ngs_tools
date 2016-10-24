@@ -6,9 +6,14 @@ for line in open(sys.argv[1],'r'):
         continue
     spl = line.strip().split('\t')
     ids = spl[0].split('_')
-    fid = '_'.join(ids[:-2])
+    des = spl[8].split(';')
+    geneid = des[0].split('=')
+    firstid = 'gene_id \"' + geneid[1] +'\";'
+    temp = ';'.join(des[1:])
+    finaldes = firstid + temp
     result = [spl[0],spl[1],"exon"]
-    for i in range(3,len(spl)):
+    for i in range(3,len(spl)-1):
         result.append(spl[i])
+    result.append(finaldes)
     print '\t'.join(result)
 
