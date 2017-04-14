@@ -6,6 +6,8 @@ import sys
 gtf = []
 prev = ""
 for line in open(sys.argv[1],'r'):
+    if line[1:] == "#":
+        continue
     spl = line.strip().split('\t')
     if (spl[2] == "exon"):
         ids = spl[8].split('"')[1]
