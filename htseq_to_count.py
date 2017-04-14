@@ -9,7 +9,7 @@ for line in open(sys.argv[1],'r'):
     if line[1:] == "#":
         continue
     spl = line.strip().split('\t')
-    if (spl[2] == "exon"):
+    if (len(spl) > 2 and spl[2] == "exon"):
         ids = spl[8].split('"')[1]
         le = int(spl[4])-int(spl[3])
         gtf.append([ids,str(le)])
