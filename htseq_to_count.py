@@ -32,11 +32,11 @@ for file in sys.argv[2:]:
 
 print '\t'.join(files)
     
-for x in count.items():
-    print x[0],len(x[1])
+#for x in count.items():
+#    print x[0],len(x[1])
 for x in gtf:
     final = [x[0],x[1],x[0]]
     for y in count[x[0]]:
         final.append(y)
-    #print '\t'.join(final)
+    print '\t'.join(final)
 
