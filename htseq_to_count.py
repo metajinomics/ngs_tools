@@ -17,7 +17,7 @@ for line in open(sys.argv[1],'r'):
 count = {}
 files = ["gene","length","description"]
 for file in sys.argv[2:]:
-    files.append(file)
+    files.append(file.strip('.')[0])
     temp = []
     for line in open(file,'r'):
         if(line[:2] != "__"):
@@ -32,9 +32,10 @@ for file in sys.argv[2:]:
 
 print '\t'.join(files)
     
+print count
 for x in gtf:
     final = [x[0],x[1],x[0]]
     for y in count[x[0]]:
         final.append(y)
-    print '\t'.join(final)
+    #print '\t'.join(final)
 
