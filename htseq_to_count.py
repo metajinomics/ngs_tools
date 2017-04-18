@@ -3,7 +3,7 @@
 #python htseq_to_count.py gtf *count
 #python htseq_to_count.py inter.gtf /Users/jinchoi/brown_count/*bam.count.txt > count.txt
 import sys
-gtf = []
+gtf = {}
 prev = ""
 for line in open(sys.argv[1],'r'):
     if line[1:] == "#":
@@ -12,7 +12,8 @@ for line in open(sys.argv[1],'r'):
     if (len(spl) > 2 and spl[2] == "exon"):
         ids = spl[8].split('"')[1]
         le = int(spl[4])-int(spl[3])
-        gtf.append([ids,str(le)])
+        gtf[ids] = str(le)
+        #gtf.append([ids,str(le)])
 
 count = {}
 files = ["gene","length","description"]
@@ -32,7 +33,7 @@ for file in sys.argv[2:]:
 
 print '\t'.join(files)
     
-for x in gtf:
+for x in gtf.items():
     final = [x[0],x[1],x[0]]
     for y in count[x[0]]:
         final.append(y)
